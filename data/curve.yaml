@@ -1,0 +1,24 @@
+# Train/val/test sets as 1) dir: path/to/imgs, 2) file: path/to/imgs.txt, or 3) list: [path/to/imgs1, path/to/imgs2, ..]
+path: D:/DataSets/XRay/half/single_curve/best_curve/v2-0328 # dataset root dir
+#train: train.txt # train images (relative to 'path') 4 images
+#val: val.txt # val images (relative to 'path') 4 images
+#test: test.txt # test images (optional)
+train: images/train
+val: images/val
+
+
+# 增加的额外参数用于控制负样本数据读取和比例
+negative_setting:
+  neg_ratio: 0    # 小于等于0时，按原始官方配置训练，大于0时，控制正负样本。 负样本：正样本
+  use_extra_neg: True    # 是否使用额外数据
+  extra_neg_sources: {
+                          "D:/DataSets/XRay/half/single_curve/best_curve/v2-0328/neg/train" : 4147, #负样本数量
+                          # "/path_to_extra_data_2/image_list.txt": 10
+                      }  # 存储为字典（图片文件夹或图片列表文件），{路径:读取数量}
+  fix_dataset_length: 4224  # 是否自定义每轮参与训练的图片数量，正样本数量
+
+
+# Classes
+names:
+  0: curve
+

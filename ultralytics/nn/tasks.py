@@ -86,6 +86,11 @@ from ultralytics.utils.torch_utils import (
     time_sync,
 )
 
+"""Other Module"""
+from ultralytics.nn.modules.Convolution.WTConv import C3k2_WT, C2f_WT
+
+
+
 try:
     import thop
 except ImportError:
@@ -987,6 +992,7 @@ def parse_model(d, ch, verbose=True):  # model_dict, input_channels(3)
             SCDown,
             C2fCIB,
             A2C2f,
+            C2f_WT, C3k2_WT,
         }
     )
     repeat_modules = frozenset(  # modules with 'repeat' arguments
@@ -1006,6 +1012,7 @@ def parse_model(d, ch, verbose=True):  # model_dict, input_channels(3)
             C2fCIB,
             C2PSA,
             A2C2f,
+            C2f_WT, C3k2_WT,
         }
     )
     for i, (f, n, m, args) in enumerate(d["backbone"] + d["head"]):  # from, number, module, args
